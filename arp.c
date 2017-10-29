@@ -172,6 +172,10 @@ void arp_req(char *ifname, struct in_addr remaddr, int gratuitous)
   
   sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP));
 
+  // Type of address to retrieve - IPv4 IP address
+  // Avoids "error: ioctl SIOCGIFADDR for eth0: Cannot assign requested address"
+  ifr.ifr_addr.sa_family = AF_INET;
+
   /* Get the hwaddr and ifindex of the interface */
   memset(ifr.ifr_name, 0, IFNAMSIZ);
   strncpy(ifr.ifr_name, (char *) ifname, IFNAMSIZ);
