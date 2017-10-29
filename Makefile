@@ -1,10 +1,15 @@
 EXTRA_CFLAGS = 
 
-#CC = gcc
+uname_m := $(shell uname -m | tr '[:upper:]' '[:lower:]')
 
-CFLAGS = -g -O2 -Wall $(EXTRA_CFLAGS)
+ifneq (,$(findstring arm,$(uname_m)))
 # For ARM:
-# CFLAGS =  -Wall $(EXTRA_CFLAGS)
+  CFLAGS =  -Wall $(EXTRA_CFLAGS)
+else
+  CC = gcc
+  CFLAGS = -g -O2 -Wall $(EXTRA_CFLAGS)
+endif
+
 LDFLAGS = 
 OBJS = parprouted.o arp.o
 
