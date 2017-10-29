@@ -23,12 +23,15 @@
 #include <linux/if_packet.h>
 #include <netinet/if_ether.h>
 #include <sys/ioctl.h>
+#if defined(NEED_ANDROID_INCLUDE)
 #include <arpa/inet.h>
+#endif
 
 #include "parprouted.h"
 
 
 // ===================
+#if defined(NEED_ANDROID_INCLUDE)
 /*
  * Ethernet Address Resolution Protocol.
  *
@@ -48,6 +51,7 @@ struct	ether_arp {
 #define	arp_hln	ea_hdr.ar_hln
 #define	arp_pln	ea_hdr.ar_pln
 #define	arp_op	ea_hdr.ar_op
+#endif /* NEED_ANDROID_INCLUDE guard for redefinition from netinet/if_ether.h */
 // ===============
 
 typedef struct _ether_arp_frame { 

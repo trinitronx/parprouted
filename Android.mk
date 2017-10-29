@@ -1,3 +1,4 @@
+LOCAL_CPPFLAGS := -DNEED_ANDROID_INCLUDE=1
 
 LOCAL_PATH := $(call my-dir)
 
